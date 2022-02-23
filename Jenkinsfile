@@ -56,7 +56,7 @@ pipeline {
              
             steps {
                 sh "docker run -d sampleapp-remote --restart=always -p 8003:8083 mohammedshashu/samplewebapp"
-		sh "docker ps | grep" 
+		sh "docker ps | grep sampleapp" 
  
             }
         }
