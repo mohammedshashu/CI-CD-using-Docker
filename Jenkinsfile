@@ -46,14 +46,14 @@ pipeline {
              
             steps 
 			{
-                sh "docker run -d -p 8003:8082 mydockerrepo/samplewebapp"
+                sh "docker run -d -p 8003:8082 mohammedshashu/samplewebapp"
  
             }
         }
  stage('Run Docker container on remote hosts') {
              
             steps {
-                sh "docker run -d -p 8003:8083 mydockerrepo/samplewebapp"
+                sh "docker run -d -p 8003:8083 mohammedshashu/samplewebapp"
 		sh "docker ps | grep" 
  
             }
