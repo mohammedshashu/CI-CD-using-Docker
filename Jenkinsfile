@@ -48,14 +48,14 @@ pipeline {
             steps 
 			{
                 sh "docker rm -f sampleapp"
-		sh "docker run -d --name sampleapp --restart=always -p 8003:8082 mohammedshashu/samplewebapp"
+		sh "docker run -d --name sampleapp --restart=always -p 8003:8080 mohammedshashu/samplewebapp"
  
             }
         }
  stage('Run Docker container on remote hosts') {
              
             steps {
-                sh "docker run -d --name sampleapp-remote --restart=always -p 8003:8083 mohammedshashu/samplewebapp"
+                sh "docker run -d --name sampleapp-remote --restart=always -p 8003:8080 mohammedshashu/samplewebapp"
 		sh "docker ps | grep sampleapp" 
  
             }
