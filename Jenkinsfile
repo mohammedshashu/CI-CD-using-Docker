@@ -54,7 +54,7 @@ pipeline {
              
             steps {
                 sh "docker run -d -p 8003:8083 mydockerrepo/samplewebapp"
-		sh "docker ps | grep 
+		sh "docker ps | grep" 
  
             }
         }
