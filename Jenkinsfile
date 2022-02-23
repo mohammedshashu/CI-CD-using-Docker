@@ -55,7 +55,7 @@ pipeline {
  stage('Run Docker container on remote hosts') {
              
             steps {
-                sh "docker run -d --name sampleapp-remote --restart=always -p 8003:8080 mohammedshashu/samplewebapp"
+                sh "docker run -d --name sampleapp-remote --restart=always -p 8004:8080 mohammedshashu/samplewebapp"
 		sh "docker ps | grep sampleapp" 
  
             }
