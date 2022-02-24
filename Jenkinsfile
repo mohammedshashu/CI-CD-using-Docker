@@ -37,14 +37,23 @@ pipeline {
           
             steps {
         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          sh  'docker push mohammedshashu/samplewebapp:latest'
-        //  sh  'docker push mohammedshashu/samplewebapp:$BUILD_NUMBER' 
+                sh  'docker push mohammedshashu/samplewebapp:latest'
+           //  sh  'docker push mohammedshashu/samplewebapp:$BUILD_NUMBER' 
         }
                   
           }
         }
 
-    stage('Executing Testcase') {
+  stage('Run Docker container on Jenkins Agent') {
+             
+            steps 
+			{
+                sh "docker rm -f sampleapp"
+		sh "docker run -d --name sampleapp --restart=always -p 8003:8080 mohammedshashu/samplewebapp"
+ 
+            }
+        }
+   stage('Executing Testcase') {
            steps {
                 git branch: 'master', url: 'https://github.com/mohammedshashu/example.java.helloworld.git'
 		   
@@ -54,16 +63,7 @@ pipeline {
                 sh 'java -jar Main.jar'
           }
         }
-     
-      stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-			{
-                sh "docker rm -f sampleapp"
-		sh "docker run -d --name sampleapp --restart=always -p 8003:8080 mohammedshashu/samplewebapp"
- 
-            }
-        }
+	 
  stage('Run Docker container on remote hosts') {
              
             steps {	
