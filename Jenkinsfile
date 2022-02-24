@@ -35,7 +35,7 @@ pipeline {
      
   stage('Executing Testcase') {
            steps {
-             
+                git branch: 'master', url: 'https://github.com/devops4solutions/CI-CD-using-Docker.git'
                 sh 'javac HelloWorld/Main.java'
 		sh 'java -cp . HelloWorld.Main'
 		sh 'jar cfme Main.jar Manifest.txt HelloWorld.Main HelloWorld/Main.class'
