@@ -29,8 +29,7 @@ pipeline {
 		sh 'docker build -t samplewebapp:latest .' 
                 sh 'docker tag samplewebapp mohammedshashu/samplewebapp:latest'
                 //sh 'docker tag samplewebapp mohammedshashu/samplewebapp:$BUILD_NUMBER'
-		deploy adapters: [tomcat9(credentialsId: '70473ce2-4a65-494c-aff4-ab989d1196ca', path: '', url: 'http://172.31.17.77:8080')], contextPath: 'prodapp1', war: './target/*.war'
-               
+		               
           }
         }
      
