@@ -65,7 +65,7 @@ pipeline {
  stage('Run Docker container on remote hosts') {
              
             steps {
-		deploy adapters: [tomcat9(credentialsId: '70473ce2-4a65-494c-aff4-ab989d1196ca', path: '', url: 'http://172.31.17.77:8080')], contextPath: 'prodapp1', war: '**/*.war'
+		deploy adapters: [tomcat9(credentialsId: '70473ce2-4a65-494c-aff4-ab989d1196ca', path: '', url: 'http://172.31.17.77:8080')], contextPath: 'prodapp1', war: '*.war'
 		// sh "docker rm -f sampleapp-remote"
                // sh "docker run -d --name sampleapp-remote --restart=always -p 8004:8080 mohammedshashu/samplewebapp"
 		//sh "docker ps | grep sampleapp" 
