@@ -33,6 +33,15 @@ pipeline {
           }
         }
      
+  stage('Executing Testcase') {
+           steps {
+             
+                sh 'javac HelloWorld/Main.java'
+		sh 'java -cp . HelloWorld.Main'
+		sh 'jar cfme Main.jar Manifest.txt HelloWorld.Main HelloWorld/Main.class'
+                sh 'java -jar Main.jar'
+          }
+        }
   stage('Publish image to Docker Hub') {
           
             steps {
