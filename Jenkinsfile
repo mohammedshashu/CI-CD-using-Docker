@@ -16,8 +16,8 @@ pipeline {
 	 stage('Execute Maven') {
            steps {
              
-                sh 'mvn package'
-                sh 'mvn sonar:sonar -Dsonar.login=b5f0f67afafe6d825ecd4cdcd90cef60e216dea0'
+                sh 'mvn clean sonar:sonar -Dsonar.login=b5f0f67afafe6d825ecd4cdcd90cef60e216dea0'
+		sh 'mvn package'
           }
         }
         
@@ -33,15 +33,6 @@ pipeline {
           }
         }
      
-  stage('Executing Testcase') {
-           steps {
-                git branch: 'master', url: 'https://github.com/mohammedshashu/example.java.helloworld.git'
-                sh 'javac HelloWorld/Main.java'
-		sh 'java -cp . HelloWorld.Main'
-		sh 'jar cfme Main.jar Manifest.txt HelloWorld.Main HelloWorld/Main.class'
-                sh 'java -jar Main.jar'
-          }
-        }
   stage('Publish image to Docker Hub') {
           
             steps {
@@ -50,6 +41,17 @@ pipeline {
         //  sh  'docker push mohammedshashu/samplewebapp:$BUILD_NUMBER' 
         }
                   
+          }
+        }
+
+    stage('Executing Testcase') {
+           steps {
+                git branch: 'master', url: 'https://github.com/mohammedshashu/example.java.helloworld.git'
+		   
+                sh 'javac HelloWorld/Main.java'
+		sh 'java -cp . HelloWorld.Main'
+		sh 'jar cfme Main.jar Manifest.txt HelloWorld.Main HelloWorld/Main.class'
+                sh 'java -jar Main.jar'
           }
         }
      
