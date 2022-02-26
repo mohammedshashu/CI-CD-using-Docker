@@ -18,6 +18,7 @@ pipeline {
              
                 sh 'mvn clean sonar:sonar -Dsonar.login=b5f0f67afafe6d825ecd4cdcd90cef60e216dea0'
 		sh 'mvn package'
+		   
           }
         }
         
