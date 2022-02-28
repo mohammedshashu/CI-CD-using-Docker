@@ -75,5 +75,19 @@ pipeline {
             }
         }
     }
-	}
-    
+}
+  post {
+        failure {
+            script {
+                currentBuild.result = 'FAILURE'
+            }
+        }
+
+        always {
+            step([$class: 'Mailer',
+                notifyEveryUnstableBuild: true,
+                recipients: "mohammedshashu@gmail.com",
+                sendToIndividuals: true])
+        }
+    }
+}
