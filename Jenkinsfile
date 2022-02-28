@@ -76,14 +76,7 @@ pipeline {
         }
     }
 }
-  post {
-        failure {
-            script {
-                currentBuild.result = 'FAILURE'
-            }
-        }
-
-        always {
+  always {
             step([$class: 'Mailer',
                 notifyEveryUnstableBuild: true,
                 recipients: "mohammedshashu@gmail.com",
