@@ -76,10 +76,3 @@ pipeline {
         }
     }
 }
-  always {
-            step([$class: 'Mailer',
-                notifyEveryUnstableBuild: true,
-                recipients: "mohammedshashu@gmail.com",
-                sendToIndividuals: true])
-        }
-    }
